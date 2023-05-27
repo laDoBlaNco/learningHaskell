@@ -62,6 +62,32 @@ elem' a (x:xs)
     |otherwise = elem' a xs
 
 
+-- QUICKSORT
+quicksort::(Ord a)=>[a]->[a] -- takes an array of type a which much be an instance of ORD and returns 
+-- an array of type a
+quicksort [] = [] -- edge case or base case  is an []. sorting an [] gives you an []
+quicksort (x:xs) =
+    let smallerSorted = quicksort [a|a<-xs,a<=x]
+        biggerSorted = quicksort [a|a<-xs,a>x]
+    in smallerSorted ++ [x] ++ biggerSorted -- NOTE I tried to see if ':' would work for consing
+    -- on the front of the list, but it doesn't because we are adding [a] ++ [x] ++ [a] and not
+    -- a : [x] ++ [a] 
+
+-- NOTE: The pattern:
+    -- First you define the edge case
+    -- Then you define a function that does something in between some element and the function
+    --- applied to the rest of the list.
+        -- Doesn't matter if its a list or a tree or any other data structure. A sum is the first
+        --- element of a list plus the sum of the rest of the list. You want a product of a list,
+        --- its the first element of the list times the product of the rest of the list. The lenght
+        --- now, well, the length of a list is one plus the length of the rest of the list, etc. etc.
+        
+        -- The key is that they all have to have edge cases or base cases. The simplest result where
+        --- recursion doesn't make sense anymore. For example in a list, the base case is an empty list
+        --- for a tree, its the node that doesn't have any children, etc. Same is true with numbers. 
+        --- The base case for numbers is typically the identity. For sums its 0, anything + 0 is itself
+        --- for multiplication its 1, anything times 1 is itself. 
+
 ----------------------------------------------------------------
 -- MAIN
 ----------------------------------------------------------------
@@ -76,3 +102,5 @@ main = do
     print $ zip [1,2,3,4,5]["one","two","three","four","five","six","seven"]
     print $ elem 28 [1,54,78,69,28,56]
     print $ elem 28 [1,54,78,69,29,56]
+    print $ quicksort [34,67,9,23,69,11,5,1]
+    print $ quicksort "the quick brown fox jumps over the lazy dog"
