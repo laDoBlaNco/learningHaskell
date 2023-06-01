@@ -27,8 +27,20 @@
 -- Relational Operators: <,>,<=,>=,==,/=
 -- Integer to Real conversion: fromIntegral
 -- Real to Integer conversion: round, floor, ceiling (of course with there slight differences
+  -- NOTE: something to note about haskell's round. Though it works normally for using the .5 as the
+  -- middle mark to decide round up or down, when its right in the middle, o sea exactly .5 then haskell
+  -- will go to the nearest EVEN number.
 
 
+-- CHAR
+-- Literals: 'a','A','\n'
+-- Relational Operators; <,>,<=,>=,==,/=
+-- Conversion functions (need to import Data.Char)
+  -- ord :: Char -> Int
+  -- chr :: Int -> Char
+import Data.Char
+ 
+ 
 
 
 main = do
@@ -55,3 +67,30 @@ main = do
   print $ rem (-11) 2
   print $ "======================================================"
   print $ "REAL NUMBERS:"
+  print $ round 3.6
+  print $ round (-3.6)
+  print $ map round [3.5,4.5,5.4,6.6]
+  print $ map ceiling [2.1,2.2,2.6,2.9]
+  print $ map floor [2.1,2.2,2.6,2.9]
+  print $ 10.0/3.0
+  print $ 10/3
+  print $ 2.0**3.0
+  print $ 2**3
+  print $ fromIntegral 4
+  print $ "======================================================"
+  print $ "CHARS:"
+  print $ ord '6'
+  print $ chr 66
+  print $ "======================================================"
+  print $ "SOME PREDEFINED FUNCTIONS:"
+  print $ even 66
+  print $ odd 66
+  print $ min 66 69
+  print $ max 66 69
+  print $ gcd 144 12
+  print $ lcm 144 12
+  print $ abs (-45)
+  print $ sqrt 12
+  print $ log 144
+  print $ exp 12
+  print $ cos 100
